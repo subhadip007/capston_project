@@ -1,0 +1,45 @@
+<%= render partial:'components/loginNav' %>
+<%= form_for(@order) do |f| %>
+<%= Time.now.strftime("%d/%m/%Y %H:%M")%>
+  <div>
+    <%= f.label :firstname %>
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :lastname %>
+    <%= f.text_field :last_name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :'giftcard  val'%>
+    <%= f.number_field :value, autofocus: true, :class=>'c1',:onchange => "f()"  %>
+  </div>
+  <div>
+    <%= f.label :'commision(5% )' %>
+    <%= f.text_field :commision, autofocus: true, :class=>'c2' %>
+  </div>
+  <div>
+    <%= f.label :'Mobile number' %>
+    <%= f.text_field :mo_num, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :Address %>
+    <%= f.text_field :address, autofocus: true %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+
+<%end%>
+<script type="text/javascript">
+
+
+
+  // $('.c1').change(f)
+  function f() {
+    let q1=document.querySelector('.c1')
+    let q2=document.querySelector('.c2')
+    q1=q1.valueAsNumber;
+    q2.value=(q1*5)/100
+  }
+
+</script>

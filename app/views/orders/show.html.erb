@@ -1,0 +1,37 @@
+<%= render partial:'components/loginNav' %>
+<h1>THis is order histry page</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ORDER ID</th>
+      <th scope="col">Recipient Name</th>
+      <th scope="col">Created at</th>
+      <th scope="col">Gift value</th>
+      <th scope="col">Comission(5%)</th>
+      <th scope="col">Delivery status</th>
+      <%if current_user.role then %>
+      <th scope="col">Change delivery status</th>
+      <%end%>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+<% @orders.each do |order| %>
+<tr>
+  <td><%= order[:id]%></td>
+  <td><%= order[:first_name]+' '+order[:last_name]%></td>
+  <td><%= order[:created_at]%></td>
+  <td><%= order[:value]%></td>
+  <td><%= order[:commision]%></td>
+  <td><%= order[:status]%></td>
+ <td>
+  <%if current_user.role then %>
+   
+
+<%= button_to "Chnage Delivery Status", orders_hist_path(:id=>order[:id]), method: :change,:class=>"btn btn-danger" %>
+  <%end%>
+  </td>
+</tr>
+
+<%end%>
